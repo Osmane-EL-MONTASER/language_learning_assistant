@@ -1,6 +1,12 @@
 // List of hiragana's masteries to show depending on which one is selected.
 let masteriesToShow = [];
 
+/**
+ * Updates the mastery list by either removing or adding a hiragana based on the provided parameters.
+ *
+ * @param {number} hiragana_id - The ID of the hiragana to be updated.
+ * @param {boolean} to_remove - A flag indicating whether to remove (true) or add (false) the hiragana.
+ */
 export function updateMasteryList(hiragana_id, to_remove) {
     // Gather the corresponding hiragana's string from the list with the hiragana_id.
     const hiraganaText = hiraganas[hiragana_id];
@@ -25,6 +31,11 @@ function updateMasteryGrid() {
     });
 }
 
+/**
+ * Clears the content of the mastery grid element and returns the element.
+ *
+ * @returns {HTMLElement} The mastery grid element after it has been cleared.
+ */
 function flushMasteryGrid() {
     document.getElementById("mastery-grid").innerHTML = "";
 

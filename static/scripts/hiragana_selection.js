@@ -9,11 +9,11 @@ let selectedHiraganas = [];
  */
 function handleHiraganaButtonClick(event) {
     const button = event.target;
-    const hiragana = hiraganas.find(h => h[1] === button.textContent);
+    const hiragana = Object.entries(hiraganas).find(([key, value]) => value[0] === button.textContent);
 
     if (button.classList.contains('selected')) {
         // Remove the hiragana from the list if it is already selected
-        selectedHiraganas = selectedHiraganas.filter(item => item[1] !== button.textContent);
+        selectedHiraganas = selectedHiraganas.filter(item => item[0] !== button.textContent);
     } else {
         // Add the hiragana to the list if it is not already selected
         selectedHiraganas.push(hiragana);
@@ -21,10 +21,9 @@ function handleHiraganaButtonClick(event) {
 
     // Toggle the 'selected' class on the button
     button.classList.toggle('selected');
-    console.log(selectedHiraganas);
 
     // Update the mastery list
-    updateMasteryList(hiragana[0], button.classList.contains('selected'));
+    updateMasteryList(hiragana[0], !button.classList.contains('selected'));
 }
 
 /**

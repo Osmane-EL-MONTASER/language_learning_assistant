@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Jeu des Hiragana</title>
+    <title>Learning Hiraganas</title>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
 </head>
 <body>
@@ -19,11 +19,11 @@
             {% endfor %}
         </div>
         <div id="word-length-container">
-            <label for="word-length-input">Longueur des mots:</label>
+            <label for="word-length-input">Word size:</label>
             <input type="number" id="word-length-input" value="1" min="1">
         </div>
         <div id="new-round-container">
-            <button id="new-round-button">New Round</button>
+            <button id="new-round-button">New Session</button>
         </div>
     </header>
     
@@ -43,22 +43,29 @@
     <button id="reset-button">Reset Progress</button>
 
     <div id="mastery-container">
-        <h2 class="border-title">Maîtrise des Hiraganas</h2>
+        <h2 class="border-title">Hiraganas' mastery</h2>
         <div id="mastery-grid">
             <!-- Mastery grid items will be dynamically generated here -->
-            {% for mastery in masteries %}
-                {% for hiragana in hiraganas %}
-                    {% if hiragana[0] == mastery[1] %}
-                        <div class="mastery-item">{{ hiragana[1] }}</div>
-                    {% endif %}
-                {% endfor %}
-            {% endfor %}
+            <i style="text-align: center;">Select the desired hiraganas to display the percentage of mastery!</i>
         </div>
     </div>
 
     <script>
-        const hiraganas = {{ hiraganas | tojson }};
-        const masteries = {{ masteries | tojson }};
+        const hiraganasArray = {{ hiraganas | tojson }};
+        const hiraganas = {};
+        hiraganasArray.forEach(item => {
+            const hiragana_id = item[0];
+            hiraganas[hiragana_id] = item.slice(1);
+        });
+
+        const masteriesArray = {{ masteries | tojson }};
+        const masteries = {};
+        masteriesArray.forEach(item => {
+            const hiragana_id = item[1];
+            // Assign the rest of the array (data) to the corresponding hiragana_id key
+            masteries[hiragana_id] = item.slice(2);
+        });
+
     </script>
     <script type="module" src="{{ url_for('static', filename='scripts/hiragana_selection.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>

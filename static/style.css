@@ -267,3 +267,13 @@ header {
 #reset-button:hover {
     background-color: #E64A19;
 }
+
+.mastery-high {
+    background-color: green;
+}
+.mastery-medium {
+    background-color: orange;
+}
+.mastery-low {
+    background-color: red;
+}

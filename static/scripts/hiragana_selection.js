@@ -1,3 +1,8 @@
+/**
+ * @fileoverview This script handles the selection of Hiragana characters in the UI.
+ * It allows users to select and deselect Hiragana buttons, and updates the mastery list accordingly.
+ */
+
 import { updateMasteryList } from './mastery_update.js';
 
 // Array to store selected Hiraganas
@@ -28,6 +33,7 @@ function handleHiraganaButtonClick(event) {
 
 /**
  * Function to initialize the Hiragana selection buttons
+ * Adds click event listeners to all Hiragana buttons in the UI.
  */
 function initializeHiraganaButtons() {
     const hiraganaButtons = document.querySelectorAll('.hiragana-button');

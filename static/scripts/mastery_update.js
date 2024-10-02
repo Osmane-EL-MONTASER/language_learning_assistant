@@ -1,3 +1,8 @@
+/**
+ * @fileoverview This script handles the updating and display of Hiragana mastery levels.
+ * It allows users to add or remove Hiragana from the mastery list and updates the display accordingly.
+ */
+
 // List of hiragana's masteries to show depending on which one is selected.
 let masteriesToShow = [];
 

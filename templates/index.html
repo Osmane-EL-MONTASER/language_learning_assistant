@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Jeu des Hiragana</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+</head>
+<body>
+    <audio id="correct-sound" src="correct.mp3" preload="auto"></audio>
+    <audio id="incorrect-sound" src="incorrect.mp3" preload="auto"></audio>
+    <audio id="trumpet-sound" src="trumpet.mp3" preload="auto"></audio>
+
+    <header>
+        <div id="header-title">Select the Hiraganas</div>
+        <div id="hiragana-selection">
+            <!-- Generate Hiragana buttons dynamically -->
+            {% for hiragana in hiraganas %}
+                <button class="hiragana-button">{{ hiragana[1] }}</button> <!-- Assuming the second column has the Hiragana character -->
+            {% endfor %}
+        </div>
+        <div id="word-length-container">
+            <label for="word-length-input">Longueur des mots:</label>
+            <input type="number" id="word-length-input" value="1" min="1">
+        </div>
+        <div id="new-round-container">
+            <button id="new-round-button">New Round</button>
+        </div>
+    </header>
+    
+    <div id="game-container">
+        <div id="progress-bar"></div>
+        <div id="progress-text">0 / 20</div>
+        <p class="question-text">What sound does this make?</p>
+        <div id="hiragana-box">
+            <span id="hiragana-character">__</span>
+        </div>
+        <input type="text" id="answer-input" placeholder="Type here">
+        <button id="submit-button">Check</button>
+        <p id="feedback"></p>
+        <p id="score-text">Score: 0</p> <!-- Score display -->
+    </div>
+
+    <button id="reset-button">Reset Progress</button>
+
+    <div id="mastery-container">
+        <h2 class="border-title">Maîtrise des Hiraganas</h2>
+        <div id="mastery-grid">
+            <!-- Mastery grid items will be dynamically generated here -->
+            {% for mastery in masteries %}
+                {% for hiragana in hiraganas %}
+                    {% if hiragana[0] == mastery[1] %}
+                        <div class="mastery-item">{{ hiragana[1] }}</div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        const hiraganas = {{ hiraganas | tojson }};
+        const masteries = {{ masteries | tojson }};
+    </script>
+    <script type="module" src="{{ url_for('static', filename='scripts/hiragana_selection.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</body>
+</html>

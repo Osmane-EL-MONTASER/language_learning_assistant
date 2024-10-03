@@ -24,7 +24,7 @@ def updateMastery(masteryToUpdate):
             UPDATE MasteryData
             SET correct = ?,
                 incorrect = ?,
-                occurrences = ?,
+                occurrences = ?
             WHERE hiragana_id = ?;
         '''
 

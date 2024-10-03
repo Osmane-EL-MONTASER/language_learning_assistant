@@ -12,7 +12,7 @@ def index():
     return render_template('index.html', hiraganas=hiraganas, masteries=masteries)
 
 @app.route('/update_mastery', methods=['POST'])
-def updateMastery():
+def updateMasteryRoute():
     data = request.json
     masteryToUpdate = data.get('masteryToUpdate', [])
 

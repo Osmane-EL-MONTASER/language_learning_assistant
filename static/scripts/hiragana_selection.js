@@ -3,7 +3,7 @@
  * It allows users to select and deselect Hiragana buttons, and updates the mastery list accordingly.
  */
 
-import { updateMasteryList } from './mastery_update.js';
+import { updateMasteryList } from './mastery_ui_update.js';
 import { loadFromCache } from './cache/hiragana_selection_cache.js';
 import { saveToCache } from './cache/hiragana_selection_cache.js';
 
@@ -44,7 +44,7 @@ function handleHiraganaButtonClick(event) {
  */
 function initializeHiraganaButtons() {
     const hiraganaButtons = document.querySelectorAll('.hiragana-button');
-
+    
     // Load Hiraganas selected in the previous session for convenience
     selectedHiraganas = loadFromCache(selectedHiraganas);
 

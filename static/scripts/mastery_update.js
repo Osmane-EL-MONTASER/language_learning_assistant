@@ -39,7 +39,7 @@ function updateMasteryGrid() {
     // For each selected hiragana, compute its mastery percentage and add it to the grid.
     masteriesToShow.forEach(hiraganaToShow => {
         const masteryPercentage = computeMasteryPercentageOf(hiraganaToShow);
-        const masteryItem = buildMasteryItem(masteryPercentage, hiraganas[hiraganaToShow][0]);
+        const masteryItem = buildMasteryItem(masteryPercentage, hiraganas[hiraganaToShow][1]);
         
         masteryGrid.appendChild(masteryItem);
     });

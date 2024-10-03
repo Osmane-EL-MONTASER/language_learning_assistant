@@ -15,7 +15,7 @@
         <div id="hiragana-selection">
             <!-- Generate Hiragana buttons dynamically -->
             {% for hiragana in hiraganas %}
-                <button class="hiragana-button">{{ hiragana[1] }}</button> <!-- Assuming the second column has the Hiragana character -->
+                <button class="hiragana-button" id="{{ hiragana[0] }}">{{ hiragana[1] }}</button> <!-- Assuming the second column has the Hiragana character -->
             {% endfor %}
         </div>
         <div id="word-length-container">
@@ -55,7 +55,7 @@
         const hiraganas = {};
         hiraganasArray.forEach(item => {
             const hiragana_id = item[0];
-            hiraganas[hiragana_id] = item.slice(1);
+            hiraganas[hiragana_id] = item.slice(0);
         });
 
         const masteriesArray = {{ masteries | tojson }};

@@ -1,6 +1,6 @@
 import sqlite3
 
-def load_mastery():
+def loadMastery():
     """
     Loads all Mastery from the SQLite database.
 

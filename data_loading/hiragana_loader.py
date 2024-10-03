@@ -1,6 +1,6 @@
 import sqlite3
 
-def load_hiraganas():
+def loadHiraganas():
     """
     Loads all Hiraganas from the SQLite database.
 

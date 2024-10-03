@@ -4,8 +4,8 @@
  */
 
 import { updateMasteryList } from './mastery_update.js';
-import { loadFromCache } from './hiragana_selection_cache.js';
-import { saveToCache } from './hiragana_selection_cache.js';
+import { loadFromCache } from './cache/hiragana_selection_cache.js';
+import { saveToCache } from './cache/hiragana_selection_cache.js';
 
 // Array to store selected Hiraganas
 let selectedHiraganas = [];
@@ -31,7 +31,6 @@ function handleHiraganaButtonClick(event) {
     // Toggle the 'selected' class on the button
     button.classList.toggle('selected');
 
-    console.log(hiragana[0]);
     // Update the mastery list
     updateMasteryList(hiragana[0], !button.classList.contains('selected'));
 

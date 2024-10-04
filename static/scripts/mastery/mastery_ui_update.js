@@ -111,7 +111,7 @@ function getMasteryColorClass(percentage) {
  * @param {number} hiraganaId - The ID of the hiragana.
  * @return {number} The mastery percentage of the hiragana.
  */
-function computeMasteryPercentageOf(hiraganaId) {
+export function computeMasteryPercentageOf(hiraganaId) {
     // Getting the mastery data with the hiraganaId.
     var masteryData = masteries[hiraganaId];
 

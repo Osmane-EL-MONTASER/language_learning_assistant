@@ -3,9 +3,12 @@
  * It allows users to select and deselect Hiragana buttons, and updates the mastery list accordingly.
  */
 
-import { updateMasteryList } from './mastery_ui_update.js';
+import { updateMasteryList } from './mastery/mastery_ui_update.js';
 import { loadFromCache } from './cache/hiragana_selection_cache.js';
 import { saveToCache } from './cache/hiragana_selection_cache.js';
+
+// TODO: TO REMOVE AFTER TESTING
+import { generateLearningSession } from './learning_session/session_builder.js';
 
 // Array to store selected Hiraganas
 let selectedHiraganas = [];
@@ -22,7 +25,7 @@ function handleHiraganaButtonClick(event) {
 
     if (button.classList.contains('selected')) {
         // Remove the hiragana from the list if it is already selected
-        selectedHiraganas = selectedHiraganas.filter(item => item[0] !== button.textContent);
+        selectedHiraganas = selectedHiraganas.filter(item => item[1][1] !== button.textContent);
     } else {
         // Add the hiragana to the list if it is not already selected
         selectedHiraganas.push(hiragana);
@@ -58,6 +61,9 @@ function initializeHiraganaButtons() {
     hiraganaButtons.forEach(button => {
         button.addEventListener('click', handleHiraganaButtonClick);
     });
+
+    // TODO: REMOVE AFTER TESTS
+    generateLearningSession(selectedHiraganas, 30);
 }
 
 /**

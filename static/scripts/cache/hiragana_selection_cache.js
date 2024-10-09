@@ -10,6 +10,9 @@
  * @return {Array} The array of selected Hiraganas loaded from the cache.
  */
 export function loadFromCache(selectedHiraganas) {
+    if (!localStorage.getItem('selectedHiraganas')) {
+        localStorage.setItem('selectedHiraganas', JSON.stringify([]));
+    }
     selectedHiraganas = JSON.parse(localStorage.getItem('selectedHiraganas'));
 
     return selectedHiraganas;

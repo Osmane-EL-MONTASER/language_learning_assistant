@@ -19,8 +19,8 @@
             {% endfor %}
         </div>
         <div id="word-length-container">
-            <label for="word-length-input">Word size:</label>
-            <input type="number" id="word-length-input" value="1" min="1">
+           <!-- <label for="word-length-input">Word size:</label>
+            <input type="number" id="word-length-input" value="1" min="1"> -->
         </div>
         <div id="new-round-container">
             <button id="new-round-button">New Session</button>
@@ -66,7 +66,7 @@
             masteries[hiragana_id] = item.slice(2);
         });
     </script>
-    
+    <script type="module" src="{{ url_for('static', filename='scripts/learning_session/session_builder.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='scripts/hiragana_selection.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </body>

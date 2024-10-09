@@ -4,14 +4,24 @@
  * It uses the mastery percentage of each Hiragana to determine its probability.
  */
 import { computeMasteryPercentageOf } from "../mastery/mastery_ui_update.js";
+import { selectedHiraganas } from '../hiragana_selection.js';
+
+/**
+ * Initializes the 'New Session' button to generate a learning session when clicked.
+ */
+function initializeNewSessionButton() {
+    const button = document.getElementById('new-round-button');
+    button.addEventListener('click', () => generateLearningSession(30));
+}
+
+document.addEventListener('DOMContentLoaded', initializeNewSessionButton);
 
 /**
  * Generates a learning session by computing the probability of each selected Hiragana to appear in the session.
  *
- * @param {Array} selectedHiraganas - An array of selected Hiraganas.
  * @param {number} sessionLength - The length of the learning session.
  */
-export function generateLearningSession(selectedHiraganas, sessionLength) {
+export function generateLearningSession(sessionLength) {
     // Generate the probability of each Hiragana to appear in the session.
     var hiraganaProbsDict = computeHiraganaProbabilities(selectedHiraganas);
     const randomHiraganaIds = Array.from({ length: sessionLength }, () => chooseRandomKey(hiraganaProbsDict));
@@ -19,6 +29,30 @@ export function generateLearningSession(selectedHiraganas, sessionLength) {
     const temp = getQuestionAnswerTupleFrom(randomHiraganaIds, selectedHiraganas);
     const questions = temp[0];
     const answers = temp[1];
+
+    document.getElementById('progress-text').innerText = "0 / " + sessionLength;
+
+    updateProgressBar(0, 30);
+    updateCurrentQuestion(questions[0]);
+    
+    console.log("Questions: " + questions);
+}
+
+export function updateCurrentQuestion(currentQuestion) {
+    const questionLabel = document.getElementById('hiragana-character');
+    questionLabel.innerText = currentQuestion;
+}
+
+/**
+ * Updates the progress bar to reflect the current progress in the learning session.
+ * 
+ * @param {number} currentProgress - The current progress in the session.
+ * @param {number} totalNumber - The total number of items in the session.
+ */
+export function updateProgressBar(currentProgress, totalNumber) {
+    const progressBar = document.getElementById('progress-bar');
+    const progressPercentage = (currentProgress / totalNumber) * 100;
+    progressBar.style.width = progressPercentage + '%';
 }
 
 /**

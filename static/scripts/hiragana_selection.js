@@ -7,11 +7,8 @@ import { updateMasteryList } from './mastery/mastery_ui_update.js';
 import { loadFromCache } from './cache/hiragana_selection_cache.js';
 import { saveToCache } from './cache/hiragana_selection_cache.js';
 
-// TODO: TO REMOVE AFTER TESTING
-import { generateLearningSession } from './learning_session/session_builder.js';
-
 // Array to store selected Hiraganas
-let selectedHiraganas = [];
+export let selectedHiraganas = [];
 
 /**
  * Handles the click event on Hiragana buttons.
@@ -61,9 +58,6 @@ function initializeHiraganaButtons() {
     hiraganaButtons.forEach(button => {
         button.addEventListener('click', handleHiraganaButtonClick);
     });
-
-    // TODO: REMOVE AFTER TESTS
-    generateLearningSession(selectedHiraganas, 30);
 }
 
 /**
